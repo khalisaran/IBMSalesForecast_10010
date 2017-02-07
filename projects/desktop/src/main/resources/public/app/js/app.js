@@ -42,6 +42,18 @@ var app = angular.module('IBMSalesForecast', ['ngRoute','rzModule']);
                          ,allow:''
                      })
 
+            .when('/ClientMaster-en', {
+                         templateUrl : 'app/views/en/ClientMaster-en.html',
+          controller: 'Client_Default_Activity'
+                         ,allow:'ROLE_USER'
+                     })
+
+            .when('/ClientMaster-es', {
+                         templateUrl : 'app/views/es/ClientMaster-es.html',
+          controller: 'Client_Default_Activity'
+                         ,allow:''
+                     })
+
 
           .otherwise('app_level');
 
