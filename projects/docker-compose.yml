@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    container_name: IBMSalesForecast-10010-db
+    build: db
+    image: ibmsalesforecast-10010/db
+    ports:
+      - "32657:3306"
+  web:
+    depends_on:
+      - db
+
+    container_name: IBMSalesForecast-10010-web
+    build: desktop
+    image: ibmsalesforecast-10010/web
+    links:
+      - db:mydb
+
+    ports:
+      - "9090:8080"
+    entrypoint: ./wait-for-it.sh -t 180 --strict mydb:3306 -- java -jar IBMSalesForecast_10010.jar
